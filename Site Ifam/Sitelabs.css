@@ -1,0 +1,168 @@
+.fundo {
+  width: 100%;
+  height: 100%;
+  border:solid 1px;
+}
+
+.cabeçalho{
+  background-color:#4ed656 ;
+  width: 100%;
+  height: 12%;
+}
+
+#logo {
+  width: 129px;
+  height: 112px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+#divBusca{
+  background-color:white;
+  border:solid 1px;
+  border-radius:13px;
+  height:41px;
+  width:200px;
+  margin-top: 13%;
+  margin-bottom: 10%;
+  margin-right: 50px;
+  float: right;
+  
+}
+
+#btnBusca{
+  width: 17%;
+  height: 60%;
+  display: block;
+    margin-top: 8px;
+    margin-left: 2px;
+}
+
+.txtBusca{
+  float:right;
+  background-color:transparent;
+  padding:1px;
+  border: none;
+  font-size:18px;
+  height:35px;
+  width:83%;
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+.usuario {
+  width: 120px;
+  margin-top: 0px;
+  margin-right: 10px;
+  float: right;
+  padding: 0auto;
+  align-content: center;
+  font-size: 15px;
+  margin-top: 5px;
+}
+#nome {
+  width: 120px;
+  margin-bottom: 1px;
+  margin: 0auto;
+  float: right;
+  align-content: center;
+  font-weight: bold;
+}
+#login {
+  width: 120px;
+  height: 60px;
+  margin-bottom: -2px;
+  margin-top: 1px;
+  margin: 0auto;
+  float: right;
+  align-content: center;
+}
+
+#botaologin {
+  font-size: 13px;
+  width: 70px;
+  height: 25px;
+  border:solid 1px;
+  border-radius: 5px;
+  margin-right: 34px;
+  margin-bottom: 5px;
+  float: right;
+  background-color: #ffffff;
+  color: black;
+}
+
+#divBusca1{
+  background-color:white;
+  border:solid 1px;
+  border-radius:5px;
+  margin-bottom:5px;
+  height:35px;
+  width:150px;
+  float: left;
+}
+
+.tema{
+  font-size: 34px;
+  text-align: center;
+  font-weight: 600;
+  padding-top: 15px;
+  margin: 0px;
+}
+
+.subtitulo{
+  font-size: 17px;
+  font-weight: bold;
+  margin: 0px;
+  padding-bottom: 17px;
+}
+
+nav {
+  background-color:#3db244 ;
+  width: 100%;
+  height: 50px;
+  border-top:solid 1px; 
+  border-bottom: none;
+  margin: 0px;
+}
+
+.navbar-nav {
+  background-color:#3db244;
+  width: 150px;
+  text-align: right;
+  float: right;
+}
+
+.navbar-toggler{
+      border: none;
+}
+
+.navbar-toggler:focus{
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+
+.navbar-light .navbar-collapse .nav-link{
+  color: white;
+  padding-top: 13px;
+  padding-right: 5px;
+}
+
+.navbar-light .navbar-collapse .active .nav-link{
+  color: white;
+  background-color: #4a754d;
+  padding-right: 6px;
+  padding-top: 13px;
+  padding-bottom: 0px;
+  height: 49px;
+}
+
+.navbar-light #collapsibleNavbar {
+  z-index: 1;
+}
+
+
+
+
+
+
