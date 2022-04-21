@@ -1,14 +1,14 @@
 <?php
 session_start();
 if (!(isset($_SESSION['permissao']))) {
-	header('location: login.php');
+	header('location: ../Login/login.php');
 }
 if (isset($_POST['sair'])) {
 	unset(
 		$_SESSION['usuario'],
 		$_SESSION['permissao']
 	);
-	header('location: login.php');
+	header('location: ../Login/login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ if (isset($_POST['sair'])) {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="Sitelabs.css">
+	<link rel="stylesheet" type="text/css" href="../css/Sitelabs.css">
 
 	<style type="text/css">
 		/*************************************************** RELATORIO ***********************************************************/
@@ -466,7 +466,7 @@ if (isset($_POST['sair'])) {
 			<div class="cabeçalho">
 				<div class="row">
 					<div class="col-2 col-lg-2 col-md-2 d-flex">
-						<img class="d-none d-lg-block d-md-block  " src="imagens/logoifam.png" id="logo" />
+						<img class="d-none d-lg-block d-md-block  " src="../imagens/logoifam.png" id="logo" />
 					</div>
 					<div class="col-12 col-lg-6 col-md-5 col-sm-12 text-center">
 						<p class="tema">Reserva de Laboratórios</p>
@@ -475,12 +475,12 @@ if (isset($_POST['sair'])) {
 					<div class="col-3 col-lg-3 col-md-4 d-none d-lg-block d-md-block">
 						<div id="divBusca">
 							<input onkeydown="pesquisa(this.value)" id="txtBusca" type="text" class="txtBusca" />
-							<img src="imagens/lupa.png" class="pesquisa" id="btnBusca" alt="Buscar" />
+							<img src="../imagens/lupa.png" class="pesquisa" id="btnBusca" alt="Buscar" />
 						</div>
 					</div>
 					<div class="col-1 col-md-1 d-none d-lg-block d-md-block">
 						<div class="text-center usuario">
-							<img src="imagens/login.png" id="login" />
+							<img src="../imagens/login.png" id="login" />
 							<div id="nome"><?php
 											$name = $_SESSION["usuario"];
 											function firstName($name)
@@ -506,7 +506,7 @@ if (isset($_POST['sair'])) {
 				<div class="d-block d-sm-block d-md-none">
 					<div id="divBusca1">
 						<input onkeydown="pesquisa(this.value)" id="txtBusca1" type="text" class="txtBusca" />
-						<img src="imagens/lupa.png" class="pesquisa1" id="btnBusca" alt="Buscar" />
+						<img src="../imagens/lupa.png" class="pesquisa1" id="btnBusca" alt="Buscar" />
 					</div>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -522,7 +522,7 @@ if (isset($_POST['sair'])) {
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="Home.php">Home</a>
+							<a class="nav-link" href="../Home/Home.php">Home</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link disabled" href="#">Salas</a>
@@ -531,13 +531,13 @@ if (isset($_POST['sair'])) {
 							<a class="nav-link disabled" href="#">Ajuda</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="relatorio.php">Relatório</a>
+							<a class="nav-link" href="../Relatorio/relatorio.php">Relatório</a>
 						</li>
 
 						<?php
 						if ($_SESSION['permissao'] == 3) {
 							echo '<li class="nav-item">
-							<a class="nav-link" href="Usuarios.php">Usuários</a>
+							<a class="nav-link" href="../Usuarios/Usuarios.php">Usuários</a>
 						</li>';
 						}
 						?>

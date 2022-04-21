@@ -1,14 +1,14 @@
 <?php
 session_start();
 if (!(isset($_SESSION['permissao']))) {
-    header('location: login.php');
+    header('location: ../Login/login.php');
 }
 if (isset($_POST['sair'])) {
     unset(
         $_SESSION['usuario'],
         $_SESSION['permissao']
     );
-    header('location: login.php');
+    header('location: ../Login/login.php');
 }
 
 define('HOST', 'localhost');
@@ -37,7 +37,7 @@ $resultado_events->execute();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="Sitelabs.css">
+    <link rel="stylesheet" type="text/css" href="../css/Sitelabs.css">
     <link href='css/core/main.min.css' rel='stylesheet' />
     <link href='css/daygrid/main.min.css' rel='stylesheet' />
     <script src='js/core/main.min.js'></script>
@@ -151,7 +151,7 @@ $resultado_events->execute();
                 if ($_SESSION['permissao'] == 3) {
                     echo "eventClick: function(info) {
                     info.jsEvent.preventDefault(); // don't let the browser navigate
-                    window.location.href = 'Editaragend.php?id=' + info.event.id;
+                    window.location.href = 'Editar/Editaragend.php?id=' + info.event.id;
                 },";
                 }
                 ?>
@@ -264,7 +264,7 @@ $resultado_events->execute();
             <div class="cabeçalho">
                 <div class="row">
                     <div class="col-2 col-lg-2 col-md-2 d-flex">
-                        <img class="d-none d-lg-block d-md-block  " src="imagens/logoifam.png" id="logo" />
+                        <img class="d-none d-lg-block d-md-block  " src="../imagens/logoifam.png" id="logo" />
                     </div>
                     <div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
                         <p class="tema">Reserva de Laboratórios</p>
@@ -281,7 +281,7 @@ $resultado_events->execute();
                     -->
                     <div class="col-1 col-md-1 d-none d-lg-block d-md-block">
                         <div class="text-center usuario">
-                            <img src="imagens/login.png" id="login" />
+                            <img src="../imagens/login.png" id="login" />
                             <div id="nome">
                                 <?php
                                 $name = $_SESSION["usuario"];
@@ -339,12 +339,12 @@ $resultado_events->execute();
                             <a class="nav-link disabled" href="#">Ajuda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="relatorio.php">Relatório</a>
+                            <a class="nav-link" href="../Relatorio/relatorio.php">Relatório</a>
                         </li>
                         <?php
                         if ($_SESSION['permissao'] == 3) {
                             echo '<li class="nav-item">
-							<a class="nav-link" href="Usuarios.php">Usuários</a>
+							<a class="nav-link" href="../Usuarios/Usuarios.php">Usuários</a>
 						</li>';
                         }
                         ?>
@@ -368,7 +368,7 @@ $resultado_events->execute();
                             <a onclick="salas(5)" class="dropdown-item" href="#">BLOCO C - TÉRREO</a>
                         </div>
                     </div>
-                    <a href="Agendamento.php" class="botao">Agendar</a>
+                    <a href="../Agendamento/Agendar/Agendamento.php" class="botao">Agendar</a>
                     <fieldset class="agend1 agendborda">
                         <legend style="margin-bottom: 5px;" class="legenda">
                             <h4 id="legend">BLOCO B - 1º ANDAR</h4>

@@ -18,17 +18,17 @@
 
     if ($consulta->num_rows == 0) {
         $_SESSION['erroemail'] = "<p style='color:red; margin-left: 3%;'>Email não está cadastrado!</p>";
-        header("Location: ../Login.php");
+        header("Location: Login.php");
         }
         else {
             if ($senha == $senhadb) {
                 $_SESSION["permissao"] = $permissao;
                 $_SESSION["usuario"] = $nome;
-                header("Location: ../Home.php");
+                header("Location: ../Home/Home.php");
                 }
                 else { 
                     $_SESSION['errosenha'] = "<p style='color:red; margin-left: 3%;'>Email ou senha invalido!</p>";
-                    header("Location: ../Login.php");
+                    header("Location: Login.php");
                            
         }
     }

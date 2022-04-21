@@ -11,7 +11,7 @@ session_start();
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="Sitelabs.css">
+	<link rel="stylesheet" type="text/css" href="../css/Sitelabs.css">
 	<style>
 		/*----------------------------------------Login---------------------------------------*/
 .cadastro {
@@ -65,7 +65,7 @@ session_start();
 		<div class="cabeçalho">
 			<div class="row">
 				<div class="col-2 col-lg-2 col-md-2 d-flex">
-					<img class="d-none d-lg-block d-md-block  " src="imagens/logoifam.png" id="logo"/>
+					<img class="d-none d-lg-block d-md-block  " src="../imagens/logoifam.png" id="logo"/>
 				</div>
 				<div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
 					<p class="tema">Reserva de Laboratórios</p>
@@ -81,7 +81,7 @@ session_start();
                     </div>
                     -->
 				 <div class="col-1 col-md-1 d-none d-lg-block d-md-block">
-					 <img src="imagens/login.png" id="login" />
+					 <img src="../imagens/login.png" id="login" />
 				</div>
 			</div>
 		</div>
@@ -121,7 +121,7 @@ session_start();
 						unset($_SESSION['errosenha']);
 					}
 				?>
-			<form method="post" action="servidor/Loginlogic.php">
+			<form method="post" action="Loginlogic.php">
 			  <fieldset>
 			  
 			   
@@ -131,7 +131,7 @@ session_start();
 			    <input required class="campo" type="senha" name="senha"> <br><br>
 				<div class="text-center">
 			    	<input class="botao" type="submit" value="Entrar"> <br>
-					<a href="Homevisit.php"><u>Entrar como visitante</u></a><br>
+					<a href="../Homevisit.php"><u>Entrar como visitante</u></a><br>
 				</div>		
 			  </fieldset>
 			</form>

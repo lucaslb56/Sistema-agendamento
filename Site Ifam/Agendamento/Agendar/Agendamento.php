@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!(isset($_SESSION['permissao']))) {
-	header('location: login.php');
+	header('location: ../../Login/login.php');
 }
 
 if (isset($_POST['sair'])) {
@@ -9,7 +9,7 @@ if (isset($_POST['sair'])) {
 		$_SESSION['usuario'],
 		$_SESSION['permissao']
 	);
-	header('location: login.php');
+	header('location: ../../Login/login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ if (isset($_POST['sair'])) {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="Sitelabs.css">
+	<link rel="stylesheet" type="text/css" href="../../css/Sitelabs.css">
 	<style>
 		/*----------------------------------------Agendamento---------------------------------------*/
 		.agendamento {
@@ -304,7 +304,7 @@ if (isset($_POST['sair'])) {
 			<div class="cabeçalho">
 				<div class="row">
 					<div class="col-2 col-lg-2 col-md-2 d-flex">
-						<img class="d-none d-lg-block d-md-block  " src="imagens/logoifam.png" id="logo" />
+						<img class="d-none d-lg-block d-md-block  " src="../../imagens/logoifam.png" id="logo" />
 					</div>
 					<div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
 						<p class="tema">Reserva de Laboratórios</p>
@@ -321,7 +321,7 @@ if (isset($_POST['sair'])) {
                     -->
 					<div class="col-1 col-md-1 d-none d-lg-block d-md-block">
 						<div class="text-center usuario">
-							<img src="imagens/login.png" id="login" />
+							<img src="../../imagens/login.png" id="login" />
 							<div id="nome">
 								<?php
 								$name = $_SESSION["usuario"];
@@ -368,7 +368,7 @@ if (isset($_POST['sair'])) {
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="Home.php">Home</a>
+							<a class="nav-link" href="../../Home/Home.php">Home</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link disabled" href="#">Salas</a>
@@ -377,12 +377,12 @@ if (isset($_POST['sair'])) {
 							<a class="nav-link disabled" href="#">Ajuda</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="relatorio.php">Relatório</a>
+							<a class="nav-link" href="../../Relatorio/relatorio.php">Relatório</a>
 						</li>
 						<?php
 						if ($_SESSION['permissao'] == 3) {
 							echo '<li class="nav-item">
-							<a class="nav-link" href="Usuarios.php">Usuários</a>
+							<a class="nav-link" href="../../Usuarios/Usuarios.php">Usuários</a>
 						</li>';
 						}
 						?>
@@ -390,7 +390,7 @@ if (isset($_POST['sair'])) {
 				</div>
 			</nav>
 			<!-------------------------------------Agendamento--------------------------------------->
-			<form action="servidor/logicgend.php" method="post">
+			<form action="logicgend.php" method="post">
 				<div class="row">
 					<div class="col-lg-8">
 						<div class="alert alert-warning alert-dismissible" style="width: 70%; float: right; margin-left: 300px;">
