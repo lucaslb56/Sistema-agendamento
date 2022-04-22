@@ -22,15 +22,15 @@ $usuario = $_POST["usuario"];
 
 if ($termino < $comeco) {
     $_SESSION['agenderro1'] = "<p style='color:red; margin-left: 3%;'>Horario invalido!</p>";
-    header("Location: ../Editaragend.php?id=".$id);
+    header("Location: Editaragend.php?id=".$id);
     exit();
   } elseif ($comeco < "07:00") {
     $_SESSION['agenderro1'] = "<p style='color:red; margin-left: 3%;'>Horario fora do periodo de funcionamento!</p>";
-    header("Location: ../Editaragend.php?id=".$id);
+    header("Location: Editaragend.php?id=".$id);
     exit();
   } elseif ($termino > "23:00") {
     $_SESSION['agenderro1'] = "<p style='color:red; margin-left: 3%;'>Horario fora do periodo de funcionamento!</p>";
-    header("Location: ../Editaragend.php?id=".$id);
+    header("Location: Editaragend.php?id=".$id);
     exit();
   }
   
@@ -49,7 +49,7 @@ OR Sala = '$sala' and Dia = '$dia' and Comeco >= '$comeco' and Termino <= '$term
       }else{
         $_SESSION['agenderro1'] = "<p style='color:red; margin-left: 3%;'>O horario escolhido ja está ocupado!</p>";
       }
-      header("Location: ../Editaragend.php?id=".$id);
+      header("Location: Editaragend.php?id=".$id);
       exit();
     }else{
       if ($permissao !=  1) {
@@ -59,7 +59,7 @@ OR Sala = '$sala' and Dia = '$dia' and Comeco >= '$comeco' and Termino <= '$term
         $_SESSION['agenderro2'] = "<p style='color:red; margin-left: 3%;'>Outro registro foi apagado por definições de prioridade!</p>";
       }else{
         $_SESSION['agenderro1'] = "<p style='color:red; margin-left: 3%;'>O horario escolhido ja está ocupado!</p>";
-        header("Location: ../Editaragend.php?id=".$id);
+        header("Location: Editaragend.php?id=".$id);
         exit();
       }
     }
@@ -76,11 +76,11 @@ OR Sala = '$sala' and Dia = '$dia' and Comeco >= '$comeco' and Termino <= '$term
     $stmt->execute();
 
     $_SESSION['agendsucess'] = "<p style='color:green; margin-left: 3%;'>Alterado com sucesso!</p>";
-    header("Location: ../Editaragend.php?id=".$id);
+    header("Location: Editaragend.php?id=".$id);
   } catch (PDOException $e) {
     echo 'Erro' . '<br>' . $e->getMessage();
     $_SESSION['agenderro1'] = "<p style='color:red; margin-left: 3%;'>Erro ao alterar agendamento!</p>";
-    header("Location: ../Editaragend.php?id=".$id);
+    header("Location: Editaragend.php?id=".$id);
   }
 
   $conn = null;

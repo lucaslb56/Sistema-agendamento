@@ -25,7 +25,7 @@ if (isset($_POST['sair'])) {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="Sitelabs.css">
+	<link rel="stylesheet" type="text/css" href="../../css/Sitelabs.css">
 
 	<style>
 		/*----------------------------------------Cadastro---------------------------------------*/
@@ -100,7 +100,7 @@ if (isset($_POST['sair'])) {
 			<div class="cabeçalho">
 				<div class="row">
 					<div class="col-2 col-lg-2 col-md-2 d-flex">
-						<img class="d-none d-lg-block d-md-block  " src="imagens/logoifam.png" id="logo" />
+						<img class="d-none d-lg-block d-md-block  " src="../../imagens/logoifam.png" id="logo" />
 					</div>
 					<div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
 						<p class="tema">Reserva de Laboratórios</p>
@@ -117,7 +117,7 @@ if (isset($_POST['sair'])) {
                     -->
 					<div class="col-1 col-md-1 d-none d-lg-block d-md-block">
 						<div class="text-center usuario">
-							<img src="imagens/login.png" id="login" />
+							<img src="../../imagens/login.png" id="login" />
 							<div id="nome">
 								<?php
 								$name = $_SESSION["usuario"];
@@ -164,7 +164,7 @@ if (isset($_POST['sair'])) {
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="Home.php">Home</a>
+							<a class="nav-link" href="../Home.php">Home</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link disabled" href="#">Salas</a>
@@ -173,10 +173,10 @@ if (isset($_POST['sair'])) {
 							<a class="nav-link disabled" href="#">Ajuda</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="relatorio.php">Relatório</a>
+							<a class="nav-link" href="../../Relatorio/relatorio.php">Relatório</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="Usuarios.php">Usuários</a>
+							<a class="nav-link" href="../../Usuarios/Usuarios.php">Usuários</a>
 						</li>
 					</ul>
 				</div>
@@ -220,7 +220,7 @@ if (isset($_POST['sair'])) {
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-							<a href="servidor/Excluir1.php?id=<?php echo $id; ?>" type="button" class="btn btn-danger">Excluir</a>
+							<a href="Excluir/Excluir1.php?id=<?php echo $id; ?>" type="button" class="btn btn-danger">Excluir</a>
 						</div>
 					</div>
 				</div>
@@ -249,7 +249,7 @@ if (isset($_POST['sair'])) {
 						?>
 					<div class="row">
 						<div class="card-body">
-							<form method="post" action="servidor/editarlogic2.php">
+							<form method="post" action="editarlogic2.php">
 								<fieldset id="editar" disabled>
 									<input name="id" value="<?php echo $id; ?>" style="display: none;" type="text">
 									<label class="rotulo" for="nome"> Agendado para:</label> <br>
@@ -370,7 +370,7 @@ if (isset($_POST['sair'])) {
 	</div>
 	<script>
 		function cancela() {
-			window.location.href = "Home.php";
+			window.location.href = "../Home.php";
 		}
 		function mostra() {
 			window.location.href = "Exrelatorio.php";

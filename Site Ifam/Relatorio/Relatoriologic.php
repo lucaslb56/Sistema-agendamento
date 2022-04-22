@@ -100,7 +100,7 @@ echo $tmostrado . " agendamento(s) obtido(s)";
                 <tr>
                     <td><?php
                     if ($_SESSION["permissao"] == 3) {
-                        echo '<a style="color:black; font-size:17px; font-weight: 500;" href="Editaragend.php?id='.$result["id"].'">'.$result["nomecompleto"].'</a>';
+                        echo '<a style="color:black; font-size:17px; font-weight: 500;" href="../Home/Editar/Editaragend.php?id='.$result["id"].'">'.$result["nomecompleto"].'</a>';
                     }else{
                         echo $result["nomecompleto"];
                     } 
@@ -114,7 +114,7 @@ echo $tmostrado . " agendamento(s) obtido(s)";
                     <td>
                     <?php 
                     if ($_SESSION["permissao"] == 3) {
-                        echo '<a style="color:black; font-size:17px; font-weight: 500;" href="Usuarios.php?'.$result["Usuario"].'">'.$result["Usuario"].'</a>';
+                        echo '<a style="color:black; font-size:17px; font-weight: 500;" href="../Usuarios/Usuarios.php?'.$result["Usuario"].'">'.$result["Usuario"].'</a>';
                     }else{
                         echo $result["Usuario"];
                     }

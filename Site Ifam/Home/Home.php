@@ -368,7 +368,7 @@ $resultado_events->execute();
                             <a onclick="salas(5)" class="dropdown-item" href="#">BLOCO C - TÉRREO</a>
                         </div>
                     </div>
-                    <a href="../Agendamento/Agendar/Agendamento.php" class="botao">Agendar</a>
+                    <a href="../Agendamento/Agendamento.php" class="botao">Agendar</a>
                     <fieldset class="agend1 agendborda">
                         <legend style="margin-bottom: 5px;" class="legenda">
                             <h4 id="legend">BLOCO B - 1º ANDAR</h4>

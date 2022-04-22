@@ -202,7 +202,7 @@ if (isset($_POST['sair'])) {
 				dados.append('tipo', tipo);
 
 				$.ajax({
-					url: 'servidor/relatoriologic.php',
+					url: 'relatoriologic.php',
 					method: 'post',
 					data: dados,
 					processData: false,
@@ -233,7 +233,7 @@ if (isset($_POST['sair'])) {
 				document.getElementById('mostra').value = mostra;
 				dados.append('inicio', inicio);
 				$.ajax({
-					url: 'servidor/relatoriologic.php',
+					url: 'relatoriologic.php',
 					method: 'post',
 					data: dados,
 					processData: false,
@@ -265,7 +265,7 @@ if (isset($_POST['sair'])) {
 				document.getElementById('mostra').value = mostra;
 				dados.append('inicio', inicio);
 				$.ajax({
-					url: 'servidor/relatoriologic.php',
+					url: 'relatoriologic.php',
 					method: 'post',
 					data: dados,
 					processData: false,
@@ -299,7 +299,7 @@ if (isset($_POST['sair'])) {
 
 					dados.append('inicio', inicio);
 					$.ajax({
-						url: 'servidor/relatoriologic.php',
+						url: 'relatoriologic.php',
 						method: 'post',
 						data: dados,
 						processData: false,
@@ -334,7 +334,7 @@ if (isset($_POST['sair'])) {
 					dados.append('tipo', tipo);
 					dados.append('inicio', inicio);
 					$.ajax({
-						url: 'servidor/relatoriologic.php',
+						url: 'relatoriologic.php',
 						method: 'post',
 						data: dados,
 						processData: false,
@@ -376,7 +376,7 @@ if (isset($_POST['sair'])) {
 				document.getElementById('mostra').value = mostra;
 				dados.append('inicio', inicio);
 				$.ajax({
-					url: 'servidor/relatoriologic.php',
+					url: 'relatoriologic.php',
 					method: 'post',
 					data: dados,
 					processData: false,
@@ -396,7 +396,7 @@ if (isset($_POST['sair'])) {
 				dadosp1.append('inicio', 0);
 
 				$.ajax({
-					url: 'servidor/relatoriologic.php',
+					url: 'relatoriologic.php',
 					method: 'post',
 					data: dadosp1,
 					processData: false,
@@ -415,7 +415,7 @@ if (isset($_POST['sair'])) {
 				dadosp1.append('inicio', 0);
 
 				$.ajax({
-					url: 'servidor/relatoriologic.php',
+					url: 'relatoriologic.php',
 					method: 'post',
 					data: dadosp1,
 					processData: false,
@@ -438,7 +438,7 @@ if (isset($_POST['sair'])) {
 						dadosp.append('inicio', 0);
 
 						$.ajax({
-							url: 'servidor/relatoriologic.php',
+							url: 'relatoriologic.php',
 							method: 'post',
 							data: dadosp,
 							processData: false,

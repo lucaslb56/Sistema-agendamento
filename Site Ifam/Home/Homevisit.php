@@ -28,7 +28,7 @@ $resultado_events->execute();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="Sitelabs.css">
+    <link rel="stylesheet" type="text/css" href="../css/Sitelabs.css">
     <link href='css/core/main.min.css' rel='stylesheet' />
     <link href='css/daygrid/main.min.css' rel='stylesheet' />
     <script src='js/core/main.min.js'></script>
@@ -250,7 +250,7 @@ $resultado_events->execute();
 <div class="cabeçalho">
                 <div class="row">
                     <div class="col-2 col-lg-2 col-md-2 d-flex">
-                        <img class="d-none d-lg-block d-md-block  " src="imagens/logoifam.png" id="logo" />
+                        <img class="d-none d-lg-block d-md-block  " src="../imagens/logoifam.png" id="logo" />
                     </div>
                     <div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
                         <p class="tema">Reserva de Laboratórios</p>
@@ -266,8 +266,8 @@ $resultado_events->execute();
                     </div>
                     -->
                     <div class="col-1 col-md-1 d-none d-lg-block d-md-block">
-                        <img src="imagens/login.png" id="login" />
-                        <a href="Login.php" id="botaologin" class="text-center">Entrar</a>
+                        <img src="../imagens/login.png" id="login" />
+                        <a href="../Login/Login.php" id="botaologin" class="text-center">Entrar</a>
                     </div>
                 </div>
             </div>
@@ -291,7 +291,7 @@ $resultado_events->execute();
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav">
                         <li class="nav-item d-block d-sm-block d-md-none">
-                            <a class="nav-link" href="Login.php">Entrar</a>
+                            <a class="nav-link" href="../Login/Login.php">Entrar</a>
                         </li>
                         <li class="nav-item  active">
                             <a class="nav-link" href="Homevisit.php">Home</a>
@@ -303,7 +303,7 @@ $resultado_events->execute();
                             <a class="nav-link disabled" href="#">Ajuda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Login.php">Relatório</a>
+                            <a class="nav-link" href="../Login/Login.php">Relatório</a>
                         </li>
                     </ul>
                 </div>

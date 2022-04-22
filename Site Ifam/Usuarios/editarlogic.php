@@ -36,12 +36,12 @@ try {
     $stmt->execute();
 
     $_SESSION['editamsg'] = "<p style='color:green; margin-top:10px;'>Alteração feita com sucesso!</p>";
-      header("Location: ../Usuarios.php");
+      header("Location: Usuarios.php");
   
   } catch(PDOException $e) {
     echo 'Erro' . '<br>' . $e->getMessage();
     $_SESSION['editamsg'] = "<p style='color:red;  margin-top:10px;'>Erro ao fazer alteração!</p>";
-      header("Location: ../Usuarios.php");
+      header("Location: Usuarios.php");
   }
 
   $conn = null;

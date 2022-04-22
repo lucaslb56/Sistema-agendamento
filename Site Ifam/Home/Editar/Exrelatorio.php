@@ -23,7 +23,7 @@ if (isset($_POST['sair'])) {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="Sitelabs.css">
+	<link rel="stylesheet" type="text/css" href="../../css/Sitelabs.css">
 
 	<style type="text/css">
 		/*************************************************** RELATORIO ***********************************************************/
@@ -184,7 +184,7 @@ if (isset($_POST['sair'])) {
 			<div class="cabeçalho">
 				<div class="row">
 					<div class="col-2 col-lg-2 col-md-2 d-flex">
-						<img class="d-none d-lg-block d-md-block  " src="imagens/logoifam.png" id="logo" />
+						<img class="d-none d-lg-block d-md-block  " src="../../imagens/logoifam.png" id="logo" />
 					</div>
 					<div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
 						<p class="tema">Reserva de Laboratórios</p>
@@ -192,7 +192,7 @@ if (isset($_POST['sair'])) {
 					</div>
 					<div class="col-1 col-md-1 d-none d-lg-block d-md-block">
 						<div class="text-center usuario">
-							<img src="imagens/login.png" id="login" />
+							<img src="../../imagens/login.png" id="login" />
 							<div id="nome"><?php
 											$name = $_SESSION["usuario"];
 											function firstName($name)
@@ -230,7 +230,7 @@ if (isset($_POST['sair'])) {
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="Home.php">Home</a>
+							<a class="nav-link" href="../Home.php">Home</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link disabled" href="#">Salas</a>
@@ -239,13 +239,13 @@ if (isset($_POST['sair'])) {
 							<a class="nav-link disabled" href="#">Ajuda</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="relatorio.php">Relatório</a>
+							<a class="nav-link" href="../../Relatorio/relatorio.php">Relatório</a>
 						</li>
 
 						<?php
 						if ($_SESSION['permissao'] == 3) {
 							echo '<li class="nav-item">
-							<a class="nav-link" href="Usuarios.php">Usuários</a>
+							<a class="nav-link" href="../../Usuarios/Usuarios.php">Usuários</a>
 						</li>';
 						}
 						?>
@@ -308,7 +308,7 @@ if (isset($_POST['sair'])) {
 
 
 					<div id="tabelarelatorio" class="table-responsive">
-						<form method="post" action="servidor/Excluir3.php<?php echo "?id=" . $id; ?>">
+						<form method="post" action="Excluir/Excluir3.php<?php echo "?id=" . $id; ?>">
 							<div class="modal fade" id="modalExclui" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">

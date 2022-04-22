@@ -14,11 +14,11 @@
       
       if($permissão=='0'){
         $_SESSION['msg'] = "<p style='color:red; margin-left: 3%;'>Selecione a permissão!</p>";
-        header("Location: ../cadastro.php");
+        header("Location: cadastro.php");
       }else{
         if($result->num_rows > 0){
           $_SESSION['msgemail'] = "<p style='color:red; margin-left: 3%;'>Email ja esta cadastrado!</p>";
-          header("Location: ../cadastro.php");
+          header("Location: cadastro.php");
         }else{
       try {
         $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
@@ -45,12 +45,12 @@
         $stmt->execute();
 
         $_SESSION['msgsucess'] = "<p style='color:green; margin-top:10px;'>Cadastro feito com sucesso!</p>";
-          header("Location: ../Usuarios.php");
+          header("Location: ../Usuarios/Usuarios.php");
       
       } catch(PDOException $e) {
         echo 'Erro' . '<br>' . $e->getMessage();
         $_SESSION['msg'] = "<p style='color:red; margin-top:10px;'>Erro ao cadastrar usuario!</p>";
-	      header("Location: ../Usuarios.php");
+	      header("Location: ../Usuarios/Usuarios.php");
       }
 
       $conn = null;

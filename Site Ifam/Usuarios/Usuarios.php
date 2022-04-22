@@ -1,17 +1,17 @@
 <?php
 session_start();
 if (!(isset($_SESSION['permissao']))) {
-	header('location: login.php');
+	header('location: ../Login/login.php');
 } else {
 	if ($_SESSION['permissao'] != 3)
-		header('location: login.php');
+		header('location: ../Login/login.php');
 }
 if (isset($_POST['sair'])) {
 	unset(
 		$_SESSION['usuario'],
 		$_SESSION['permissao']
 	);
-	header('location: login.php');
+	header('location: ../Login/login.php');
 }
 $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 ?>
@@ -28,7 +28,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="Sitelabs.css">
+	<link rel="stylesheet" type="text/css" href="../css/Sitelabs.css">
 
 	<style type="text/css">
 		/*************************************************** RELATORIO ***********************************************************/
@@ -207,7 +207,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 			dados.append('inicio', inicio);
 			// Gera tabela
 			$.ajax({
-				url: 'servidor/Usulogic.php',
+				url: 'Usulogic.php',
 				method: 'post',
 				data: dados,
 				processData: false,
@@ -228,7 +228,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 						document.getElementById("tabelarelatorio").innerHTML = this.responseText;
 					}
 				};
-				xmlhttp.open("POST", "servidor/Usulogic.php");
+				xmlhttp.open("POST", "Usulogic.php");
 				xmlhttp.send(usuD);
 			}
 			// controla quantos registros aparecem
@@ -241,7 +241,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 				dados.append('inicio', inicio);
 				dados.append('qregistro', qregistro);
 				$.ajax({
-					url: 'servidor/Usulogic.php',
+					url: 'Usulogic.php',
 					method: 'post',
 					data: dados,
 					processData: false,
@@ -263,7 +263,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 				dados.append('qregistro', qregistro);
 				dados.append('inicio', inicio);
 				$.ajax({
-					url: 'servidor/Usulogic.php',
+					url: 'Usulogic.php',
 					method: 'post',
 					data: dados,
 					processData: false,
@@ -287,7 +287,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 					dados.append('qregistro', qregistro);
 					dados.append('inicio', inicio);
 					$.ajax({
-						url: 'servidor/Usulogic.php',
+						url: 'Usulogic.php',
 						method: 'post',
 						data: dados,
 						processData: false,
@@ -314,7 +314,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 					dados.append('qregistro', qregistro);
 					dados.append('inicio', inicio);
 					$.ajax({
-						url: 'servidor/Usulogic.php',
+						url: 'Usulogic.php',
 						method: 'post',
 						data: dados,
 						processData: false,
@@ -347,7 +347,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 				dados.append('qregistro', qregistro);
 				dados.append('inicio', inicio);
 				$.ajax({
-					url: 'servidor/Usulogic.php',
+					url: 'Usulogic.php',
 					method: 'post',
 					data: dados,
 					processData: false,
@@ -366,7 +366,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 				dadosp1.append('inicio', 0);
 
 				$.ajax({
-					url: 'servidor/Usulogic.php',
+					url: 'Usulogic.php',
 					method: 'post',
 					data: dadosp1,
 					processData: false,
@@ -384,7 +384,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 				dadosp1.append('inicio', 0);
 
 				$.ajax({
-					url: 'servidor/Usulogic.php',
+					url: 'Usulogic.php',
 					method: 'post',
 					data: dadosp1,
 					processData: false,
@@ -406,7 +406,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 						dadosp.append('inicio', 0);
 
 						$.ajax({
-							url: 'servidor/Usulogic.php',
+							url: 'Usulogic.php',
 							method: 'post',
 							data: dadosp,
 							processData: false,
@@ -434,7 +434,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 			<div class="cabeçalho">
 				<div class="row">
 					<div class="col-2 col-lg-2 col-md-2 d-flex">
-						<img class="d-none d-lg-block d-md-block  " src="imagens/logoifam.png" id="logo" />
+						<img class="d-none d-lg-block d-md-block  " src="../imagens/logoifam.png" id="logo" />
 					</div>
 					<div class="col-12 col-lg-6 col-md-5 col-sm-12 text-center">
 						<p class="tema">Reserva de Laboratórios</p>
@@ -443,12 +443,12 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 					<div class="col-3 col-lg-3 col-md-4 d-none d-lg-block d-md-block">
 						<div id="divBusca">
 							<input onkeydown="pesquisa(this.value)" id="txtBusca" type="text" class="txtBusca" />
-							<img src="imagens/lupa.png" class="pesquisa" id="btnBusca" alt="Buscar" />
+							<img src="../imagens/lupa.png" class="pesquisa" id="btnBusca" alt="Buscar" />
 						</div>
 					</div>
 					<div class="col-1 col-md-1 d-none d-lg-block d-md-block">
 						<div class="text-center usuario">
-							<img src="imagens/login.png" id="login" />
+							<img src="../imagens/login.png" id="login" />
 							<div id="nome"><?php
 											$name = $_SESSION["usuario"];
 											function firstName($name)
@@ -474,7 +474,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 				<div class="d-block d-sm-block d-md-none">
 					<div id="divBusca1">
 						<input onkeydown="pesquisa(this.value)" id="txtBusca1" type="text" class="txtBusca" />
-						<img src="imagens/lupa.png" class="pesquisa1" id="btnBusca" alt="Buscar" />
+						<img src="../imagens/lupa.png" class="pesquisa1" id="btnBusca" alt="Buscar" />
 					</div>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -490,7 +490,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="Home.php">Home</a>
+							<a class="nav-link" href="../Home/Home.php">Home</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link disabled" href="#">Salas</a>
@@ -499,10 +499,10 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 							<a class="nav-link disabled" href="#">Ajuda</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="relatorio.php">Relatório</a>
+							<a class="nav-link" href="../Relatorio/relatorio.php">Relatório</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="Usuarios.php">Usuários</a>
+							<a class="nav-link" href="../Usuarios/Usuarios.php">Usuários</a>
 						</li>
 					</ul>
 				</div>
@@ -511,7 +511,7 @@ $usuario = filter_input(INPUT_GET, 'usuario', FILTER_SANITIZE_NUMBER_INT);
 			<!----------------------------------------------------------RELATORIO---------------------------------------------------->
 			<div class="row" style="padding: 10px;">
 				<div class=" col-lg-12 col-md-12 col-sm-12">
-					<a href="Cadastro.php" class="botaocad">Cadastrar novo usuario</a>
+					<a href="../Cadastro/Cadastro.php" class="botaocad">Cadastrar novo usuario</a>
 				</div>
 			</div>
 			<?php
