@@ -1,14 +1,14 @@
 <?php
 session_start();
 if (!(isset($_SESSION['permissao']))) {
-	header('location: login.php');
+	header('location: ../../Login/login.php');
 }
 if (isset($_POST['sair'])) {
 	unset(
 		$_SESSION['usuario'],
 		$_SESSION['permissao']
 	);
-	header('location: login.php');
+	header('location: ../../Login/login.php');
 }
 ?>
 <!DOCTYPE html>

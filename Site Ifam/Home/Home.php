@@ -153,7 +153,7 @@ $resultado_events->execute();
                     info.jsEvent.preventDefault(); // don't let the browser navigate
                     window.location.href = 'Editar/Editaragend.php?id=' + info.event.id;
                 },";
-                }
+            }
                 ?>
             });
 

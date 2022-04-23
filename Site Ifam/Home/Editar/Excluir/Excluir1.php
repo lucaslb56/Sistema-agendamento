@@ -61,12 +61,12 @@ try {
           $stmt1->execute();
         }
     $_SESSION['editamsg'] = "<p style='color:green; margin-top:10px;'>Agendamento apagado com sucesso!</p>";
-      header("Location: ../Home.php");
+      header("Location: ../../../Relatorio/relatorio.php");
   
   } catch(PDOException $e) {
     echo 'Erro' . '<br>' . $e->getMessage();
     $_SESSION['editamsg'] = "<p style='color:red;  margin-top:10px;'>Erro ao apagar Agendamento!</p>";
-    header("Location: ../Home.php");
+    header("Location: ../../../Relatorio/relatorio.php");
   }
 
   $conn = null;
