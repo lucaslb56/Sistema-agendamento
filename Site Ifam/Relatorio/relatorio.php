@@ -211,6 +211,9 @@ if (isset($_POST['sair'])) {
 						document.getElementById("tabelarelatorio").innerHTML = resposta;
 					}
 				})
+				$('html, body').animate({
+					scrollTop: $("#tabelarelatorio").offset().top
+				}, 700);
 			})
 
 			// controla quantos registros aparecem
@@ -405,6 +408,9 @@ if (isset($_POST['sair'])) {
 						document.getElementById("tabelarelatorio").innerHTML = resposta;
 					}
 				})
+				$('html, body').animate({
+					scrollTop: $("#tabelarelatorio").offset().top
+				}, 700);
 			})
 			$(".pesquisa1").click(function() {
 				document.getElementById("Lcomando").style.display = "none";
@@ -424,6 +430,9 @@ if (isset($_POST['sair'])) {
 						document.getElementById("tabelarelatorio").innerHTML = resposta;
 					}
 				})
+				$('html, body').animate({
+					scrollTop: $("#tabelarelatorio").offset().top
+				}, 700);
 			})
 		})
 
@@ -445,6 +454,7 @@ if (isset($_POST['sair'])) {
 							contentType: false,
 							success: function(resposta) {
 								document.getElementById("tabelarelatorio").innerHTML = resposta;
+								document.getElementById('tabelarelatorio').scrollIntoView();
 							}
 						})
 						return false;
@@ -547,15 +557,17 @@ if (isset($_POST['sair'])) {
 
 			<!----------------------------------------------------------RELATORIO---------------------------------------------------->
 			<div style="padding: 10px;">
+				<?php
+				if (isset($_SESSION['msgsucess'])) {
+					echo $_SESSION['msgsucess'] . "<br>";
+					unset($_SESSION['msgsucess']);
+				}
+				
+				?>
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<div class="relatorio text-center">
-							<?php
-							if (isset($_SESSION['msgsucess'])) {
-								echo $_SESSION['msgsucess'] . "<br>";
-								unset($_SESSION['msgsucess']);
-							}
-							?>
+
 							<fieldset class="agendarelatorio agendbordarelatorio">
 								<legend class="legenda">
 									<h4>FILTROS</h4>
@@ -590,7 +602,7 @@ if (isset($_POST['sair'])) {
 
 
 								<div style="padding: 10px;">
-									<a href="#tabelarelatorio"><input id="gerarlatorio" type="submit" value="GERAR"></a>
+									<input id="gerarlatorio" type="submit" value="GERAR">
 								</div>
 							</fieldset>
 						</div>
@@ -607,10 +619,7 @@ if (isset($_POST['sair'])) {
 				// consulta pra verificação de quantidade de usuarios
 				$consulta1 = $mysqli->query("SELECT * FROM agendamentos");
 				$Tregistros = $consulta1->num_rows;
-				if (isset($_SESSION['editamsg'])) {
-					echo $_SESSION['editamsg'];
-					unset($_SESSION['editamsg']);
-				}
+
 				?>
 				<div style="display: none;" id="mostracomando">
 					<div class="row" id="Lcomando">
