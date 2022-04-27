@@ -6,7 +6,7 @@ session_start();
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width" />
-	<title>Cordenação de Laboratórios</title>
+	<title>Coordenação de Laboratórios</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -41,7 +41,7 @@ session_start();
 .botao {
   width: 90px;
   height: 32px;
-  background-color: rgba(78, 214, 86, 0.8);
+  background-color: #6db4ea;
   border:solid 1px;
   border-radius: 5px;
 }
@@ -65,11 +65,11 @@ session_start();
 		<div class="cabeçalho">
 			<div class="row">
 				<div class="col-2 col-lg-2 col-md-2 d-flex">
-					<img class="d-none d-lg-block d-md-block  " src="../imagens/logoifam.png" id="logo"/>
+					<img class="d-none d-lg-block d-md-block  " src="../imagens/Logo.png" id="logo"/>
 				</div>
 				<div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
-					<p class="tema">Reserva de Laboratórios</p>
-					<p class="subtitulo">Campus Manaus Distrito Industrial</p>
+					<p class="tema">Coordenação de Laboratórios</p>
+					<p class="subtitulo">Sistema de administração de laboratórios</p>
 				</div>
 				<!-- (futura implementação, nesta tela, a barra de pesquisa deve levar a
                     de laboratorios)
@@ -131,7 +131,7 @@ session_start();
 			    <input required class="campo" type="senha" name="senha"> <br><br>
 				<div class="text-center">
 			    	<input class="botao" type="submit" value="Entrar"> <br>
-					<a href="../Homevisit.php"><u>Entrar como visitante</u></a><br>
+					<a href="../Home/Homevisit.php"><u>Entrar como visitante</u></a><br>
 				</div>		
 			  </fieldset>
 			</form>

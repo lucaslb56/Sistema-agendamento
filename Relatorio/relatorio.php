@@ -17,7 +17,7 @@ if (isset($_POST['sair'])) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width" />
-	<title>Cordenação de Laboratórios</title>
+	<title>Coordenação de Laboratórios</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -118,7 +118,7 @@ if (isset($_POST['sair'])) {
 		}
 
 		#primeira {
-			background-color: #4ed656;
+			background-color: #6db4ea;
 		}
 
 		.botaotab {
@@ -166,10 +166,11 @@ if (isset($_POST['sair'])) {
 		}
 
 		#sair {
-			background-color: #3db244;
+			background-color: #4b8fc3;
 			color: white;
 			border: none;
 			padding-right: 2px;
+
 		}
 	</style>
 	<script>
@@ -476,11 +477,11 @@ if (isset($_POST['sair'])) {
 			<div class="cabeçalho">
 				<div class="row">
 					<div class="col-2 col-lg-2 col-md-2 d-flex">
-						<img class="d-none d-lg-block d-md-block  " src="../imagens/logoifam.png" id="logo" />
+						<img class="d-none d-lg-block d-md-block  " src="../imagens/Logo.png" id="logo" />
 					</div>
 					<div class="col-12 col-lg-6 col-md-5 col-sm-12 text-center">
-						<p class="tema">Reserva de Laboratórios</p>
-						<p class="subtitulo d-block d-lg-block d-md-none">Campus Manaus Distrito Industrial</p>
+						<p class="tema">Coordenação de Laboratórios</p>
+						<p class="subtitulo d-block d-lg-block d-md-none">Sistema de administração de laboratórios</p>
 					</div>
 					<div class="col-3 col-lg-3 col-md-4 d-none d-lg-block d-md-block">
 						<div id="divBusca">

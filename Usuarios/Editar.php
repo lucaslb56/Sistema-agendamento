@@ -20,7 +20,7 @@ if (isset($_POST['sair'])) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width" />
-	<title>Cordenação de Laboratórios</title>
+	<title>Coordenação de Laboratórios</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -59,13 +59,13 @@ if (isset($_POST['sair'])) {
 		.botao {
 			width: 90px;
 			height: 32px;
-			background-color: rgba(78, 214, 86, 0.8);
+			background-color: #658095;
 			border: solid 1px;
 			border-radius: 5px;
 		}
 
 		#sair {
-			background-color: #3db244;
+			background-color: #4b8fc3;
 			color: white;
 			border: none;
 			padding-right: 2px;
@@ -85,15 +85,15 @@ if (isset($_POST['sair'])) {
 			<!-------------------------------------------------- CABEÇALHO DO SITE --------------------------------------------------->
 
 			<div class="cabeçalho">
-                <div class="row">
-                    <div class="col-2 col-lg-2 col-md-2 d-flex">
-                        <img class="d-none d-lg-block d-md-block  " src="../imagens/logoifam.png" id="logo" />
-                    </div>
-                    <div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
-                        <p class="tema">Reserva de Laboratórios</p>
-                        <p class="subtitulo">Campus Manaus Distrito Industrial</p>
-                    </div>
-                    <!-- (futura implementação, nesta tela, a barra de pesquisa deve levar a
+				<div class="row">
+					<div class="col-2 col-lg-2 col-md-2 d-flex">
+						<img class="d-none d-lg-block d-md-block  " src="../imagens/Logo.png" id="logo" />
+					</div>
+					<div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
+						<p class="tema">Coordenação de Laboratórios</p>
+						<p class="subtitulo">Sistema de administração e agendamento de laboratórios</p>
+					</div>
+					<!-- (futura implementação, nesta tela, a barra de pesquisa deve levar a
                     wiki de laboratorios)
                     <div class="col-3 col-lg-3 col-md-4 d-none d-lg-block d-md-block">
                         <div id="divBusca">
@@ -102,28 +102,28 @@ if (isset($_POST['sair'])) {
                         </div>
                     </div>
                     -->
-                    <div class="col-1 col-md-1 d-none d-lg-block d-md-block">
-                        <div class="text-center usuario">
-                            <img src="../imagens/login.png" id="login" />
-                            <div id="nome">
-                                <?php
-                                $name = $_SESSION["usuario"];
-                                function firstName($name)
-                                {
-                                    $array = explode(" ", $name);
-                                    return $array[0];
-                                }
+					<div class="col-1 col-md-1 d-none d-lg-block d-md-block">
+						<div class="text-center usuario">
+							<img src="../imagens/login.png" id="login" />
+							<div id="nome">
+								<?php
+								$name = $_SESSION["usuario"];
+								function firstName($name)
+								{
+									$array = explode(" ", $name);
+									return $array[0];
+								}
 
-                                echo firstName($name);
-                                ?>
-                            </div>
-                        </div>
-                        <form method="post">
-                            <input type="submit" value="Sair" name="sair" id="botaologin" class="text-center">
-                        </form>
-                    </div>
-                </div>
-            </div>
+								echo firstName($name);
+								?>
+							</div>
+						</div>
+						<form method="post">
+							<input type="submit" value="Sair" name="sair" id="botaologin" class="text-center">
+						</form>
+					</div>
+				</div>
+			</div>
 
 
 			<!------------------------------------------------------BARRA DE PESQUISA--------------------------------------------------->
@@ -247,8 +247,8 @@ if (isset($_POST['sair'])) {
 									</div>
 									<div class="text-center">
 										<input class="botao" type="submit" value="Salvar">
-										<input onclick="cancela()" style="background-color: #FFA500;" class="botao" type="button" value="Cancelar">
-										<input data-toggle="modal" data-target="#modalExclui" style="background-color: #B22222;" class="botao" type="button" value="Excluir">
+										<input onclick="cancela()" style="background-color: #538ab5;" class="botao" type="button" value="Cancelar">
+										<input data-toggle="modal" data-target="#modalExclui" style="background-color: #365d76;" class="botao" type="button" value="Excluir">
 										<br><br>
 									</div>
 								</fieldset>

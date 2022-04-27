@@ -59,10 +59,11 @@ if (isset($_POST['sair'])) {
 		.botao {
 			width: 90px;
 			height: 32px;
-			background-color: rgba(78, 214, 86, 0.8);
+			background-color: #658095;
 			border: solid 1px;
 			border-radius: 5px;
 		}
+
 		.botao1 {
 			width: 120px;
 			height: 32px;
@@ -73,13 +74,14 @@ if (isset($_POST['sair'])) {
 			color: black;
 			padding: 5px;
 		}
+
 		.botao1:hover {
 			color: black;
 		}
 
 
 		#sair {
-			background-color: #3db244;
+			background-color: #4b8fc3;
 			color: white;
 			border: none;
 			padding-right: 2px;
@@ -91,6 +93,7 @@ if (isset($_POST['sair'])) {
 		}
 	</style>
 </head>
+
 <body>
 
 	<div class="container-fluid">
@@ -100,11 +103,11 @@ if (isset($_POST['sair'])) {
 			<div class="cabeçalho">
 				<div class="row">
 					<div class="col-2 col-lg-2 col-md-2 d-flex">
-						<img class="d-none d-lg-block d-md-block  " src="../../imagens/logoifam.png" id="logo" />
+						<img class="d-none d-lg-block d-md-block  " src="../../imagens/Logo.png" id="logo" />
 					</div>
 					<div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
-						<p class="tema">Reserva de Laboratórios</p>
-						<p class="subtitulo">Campus Manaus Distrito Industrial</p>
+						<p class="tema">Coordenação de Laboratórios</p>
+						<p class="subtitulo">Sistema de administração de laboratórios</p>
 					</div>
 					<!-- (futura implementação, nesta tela, a barra de pesquisa deve levar a
                     wiki de laboratorios)
@@ -193,8 +196,8 @@ if (isset($_POST['sair'])) {
 			$consulta = $mysqli->query("SELECT * FROM agendamentos WHERE id = '$id'");
 			$result = $consulta->fetch_array();
 
-			echo '<p style="display:none;" id="nome1">'.$result["nomecompleto"] . '</p>';
-			echo '<p style="display:none;" id="permissao1">'.$result["Permissão"] . '</p>';
+			echo '<p style="display:none;" id="nome1">' . $result["nomecompleto"] . '</p>';
+			echo '<p style="display:none;" id="permissao1">' . $result["Permissão"] . '</p>';
 			echo '<p style="display:none;" id="area1">' . $result["Area"] . '</p>';
 			echo '<p style="display:none;" id="sala1">' . $result["Sala"] . '</p>';
 			echo '<p style="display:none;" id="data1">' . $result["Dia"] . '</p>';
@@ -230,23 +233,23 @@ if (isset($_POST['sair'])) {
 				<div class="cadastro">
 					<h1 class="text-center" style="font-size: 30px;">Editar agendamento</h1>
 					<?php
-						if (isset($_SESSION['agendsucess'])) {
-							echo $_SESSION['agendsucess'];
-							unset($_SESSION['agendsucess']);
-						}
-						?>
-						<?php
-						if (isset($_SESSION['agenderro2'])) {
-							echo $_SESSION['agenderro2'];
-							unset($_SESSION['agenderro2']);
-						}
-						?>
-						<?php
-						if (isset($_SESSION['agenderro1'])) {
-							echo $_SESSION['agenderro1'];
-							unset($_SESSION['agenderro1']);
-						}
-						?>
+					if (isset($_SESSION['agendsucess'])) {
+						echo $_SESSION['agendsucess'];
+						unset($_SESSION['agendsucess']);
+					}
+					?>
+					<?php
+					if (isset($_SESSION['agenderro2'])) {
+						echo $_SESSION['agenderro2'];
+						unset($_SESSION['agenderro2']);
+					}
+					?>
+					<?php
+					if (isset($_SESSION['agenderro1'])) {
+						echo $_SESSION['agenderro1'];
+						unset($_SESSION['agenderro1']);
+					}
+					?>
 					<div class="row">
 						<div class="card-body">
 							<form method="post" action="editarlogic2.php">
@@ -281,13 +284,13 @@ if (isset($_POST['sair'])) {
 										<option value="Lab. Programação III">Lab. Programação III</option>
 										<option value="Redes de Telecomunicações">Redes de Telecomunicações</option>
 										<option value="Sistemas de Telecom">Sistemas de Telecom</option>
-										
+
 										<option disabled>BLOCO B - TÉRREO</option>
 										<option value="Indústria I">Indústria I</option>
 										<option value="Indústria II">Indústria II</option>
 										<option value="Indústria III">Indústria III</option>
 										<option value="Lab. FINEP">Lab. FINEP</option>
-										
+
 										<option disabled>BLOCO C - EXTENÇÃO</option>
 										<option value="Lab. Robótica e Controle">Lab. Robótica e Controle</option>
 										<option value="Lab. de Acionamentos/CLP">Lab. de Acionamentos/CLP</option>
@@ -301,8 +304,8 @@ if (isset($_POST['sair'])) {
 										<option value="Quimica">Quimica</option>
 
 									</select><br>
-									
-										<label class="rotulo" for="data"> Dia</label> <br>
+
+									<label class="rotulo" for="data"> Dia</label> <br>
 									<input required id="data" class="campo" type="date" name="data"> <br>
 
 									<label class="rotulo" for="comeco">Começo</label> <br>
@@ -333,31 +336,29 @@ if (isset($_POST['sair'])) {
 									$pieces = explode("-", $result["InicioEx"]);
 									$pieces1 = explode("-", $result["FimEx"]);
 									if ($result['InicioEx'] != '') {
-										echo '<p style="margin-left:20px; font-size:20px;">De: '.$pieces[2].'/'.$pieces[1].'/'.$pieces[0].' Até: ' .$pieces1[2].'/'.$pieces1[1].'/'.$pieces1[0].'</p>';
+										echo '<p style="margin-left:20px; font-size:20px;">De: ' . $pieces[2] . '/' . $pieces[1] . '/' . $pieces[0] . ' Até: ' . $pieces1[2] . '/' . $pieces1[1] . '/' . $pieces1[0] . '</p>';
 									}
 									if ($result['Tipo'] == 'Manutenção') {
-										echo '<a style="width:100px;" href="Manutencao.php?inicio='.$result["InicioEx"].'&fim='.$result["FimEx"].'&sala='.$result["Sala"].'"  class="botao1">Agendamentos neste período</a><br><br>';
-
+										echo '<a style="width:100px;" href="Manutencao.php?inicio=' . $result["InicioEx"] . '&fim=' . $result["FimEx"] . '&sala=' . $result["Sala"] . '"  class="botao1">Agendamentos neste período</a><br><br>';
 									}
 									if ($result['Semanal'] != '') {
 										echo '<p style="margin-left:20px; font-size:20px;">Agendamento repetido: ' . $result['Semanal'] . '</p>';
-										echo '<a href="Exrelatorio.php?id='.$id.'"  class="botao1">Mostrar todos</a><br><br>';
+										echo '<a href="Exrelatorio.php?id=' . $id . '"  class="botao1">Mostrar todos</a><br><br>';
 									}
 									?>
 								</fieldset>
 
 								<div class="text-center">
 									<?php
-										if ($result['Tipo'] != 'Manutenção') {
-											echo '<input id="edita" class="botao" type="button" value="Editar">';
-											
-										}
+									if ($result['Tipo'] != 'Manutenção') {
+										echo '<input id="edita" class="botao" type="button" value="Editar">';
+									}
 									?>
 									<input id="salva" style="display: none;" class="botao" type="submit" value="Salvar">
-									<input onclick="cancela()" style="background-color: #FFA500;" class="botao" type="button" value="Sair">
-									<input data-toggle="modal" data-target="#modalExclui" style="background-color: #B22222;" class="botao" type="button" value="Excluir">
+									<input onclick="cancela()" style="background-color: #538ab5;" class="botao" type="button" value="Sair">
+									<input data-toggle="modal" data-target="#modalExclui" style="background-color: #365d76;" class="botao" type="button" value="Excluir">
 									<br><br>
-									
+
 								</div>
 							</form>
 						</div>
@@ -372,12 +373,13 @@ if (isset($_POST['sair'])) {
 		function cancela() {
 			window.location.href = "../Home.php";
 		}
+
 		function mostra() {
 			window.location.href = "Exrelatorio.php";
 		}
-		
+
 		$(document).ready(function() {
-			
+
 			$("#edita").click(function() {
 				$("#salva").show();
 				$(this).hide();

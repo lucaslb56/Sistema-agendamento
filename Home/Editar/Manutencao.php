@@ -167,10 +167,11 @@ if (isset($_POST['sair'])) {
 		}
 
 		#sair {
-			background-color: #3db244;
+			background-color: #4b8fc3;
 			color: white;
 			border: none;
 			padding-right: 2px;
+
 		}
 	</style>
 </head>
@@ -184,11 +185,11 @@ if (isset($_POST['sair'])) {
 			<div class="cabeçalho">
 				<div class="row">
 					<div class="col-2 col-lg-2 col-md-2 d-flex">
-						<img class="d-none d-lg-block d-md-block  " src="../../imagens/logoifam.png" id="logo" />
+						<img class="d-none d-lg-block d-md-block  " src="../../imagens/Logo.png" id="logo" />
 					</div>
 					<div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
 						<p class="tema">Reserva de Laboratórios</p>
-						<p class="subtitulo d-block d-lg-block d-md-none">Campus Manaus Distrito Industrial</p>
+						<p class="subtitulo">Sistema de administração de laboratórios</p>
 					</div>
 					<div class="col-1 col-md-1 d-none d-lg-block d-md-block">
 						<div class="text-center usuario">

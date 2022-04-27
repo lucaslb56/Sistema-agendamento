@@ -23,7 +23,7 @@ $resultado_events->execute();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" />
-    <title>Cordenação de Laboratórios</title>
+    <title>Coordenação de Laboratórios</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -236,8 +236,6 @@ $resultado_events->execute();
             float: right;
             align-content: center;
         }
-
-        
     </style>
 </head>
 
@@ -245,16 +243,16 @@ $resultado_events->execute();
 
     <div class="container-fluid">
         <div class="fundo">
-           <!-------------------------------------------------- CABEÇALHO DO SITE --------------------------------------------------->
+            <!-------------------------------------------------- CABEÇALHO DO SITE --------------------------------------------------->
 
-<div class="cabeçalho">
+            <div class="cabeçalho">
                 <div class="row">
                     <div class="col-2 col-lg-2 col-md-2 d-flex">
-                        <img class="d-none d-lg-block d-md-block  " src="../imagens/logoifam.png" id="logo" />
+                        <img class="d-none d-lg-block d-md-block  " src="../imagens/Logo.png" id="logo" />
                     </div>
                     <div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
-                        <p class="tema">Reserva de Laboratórios</p>
-                        <p class="subtitulo">Campus Manaus Distrito Industrial</p>
+                        <p class="tema">Coordenação de Laboratórios</p>
+                        <p class="subtitulo">Sistema de administração de laboratórios</p>
                     </div>
                     <!-- (futura implementação, nesta tela, a barra de pesquisa deve levar a
                     wiki de laboratorios)
@@ -326,7 +324,7 @@ $resultado_events->execute();
                             <a onclick="salas(5)" class="dropdown-item" href="#">BLOCO C - TÉRREO</a>
                         </div>
                     </div>
-                    <a href="Login.php" class="botao">Agendar</a>
+                    <a href="../Login/Login.php" class="botao">Agendar</a>
                     <fieldset class="agend1 agendborda">
                         <legend style="margin-bottom: 5px;" class="legenda">
                             <h4 id="legend">BLOCO B - 1º ANDAR</h4>

@@ -32,7 +32,7 @@ $resultado_events->execute();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" />
-    <title>Cordenação de Laboratórios</title>
+    <title>Coordenação de Laboratórios</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -153,7 +153,7 @@ $resultado_events->execute();
                     info.jsEvent.preventDefault(); // don't let the browser navigate
                     window.location.href = 'Editar/Editaragend.php?id=' + info.event.id;
                 },";
-            }
+                }
                 ?>
             });
 
@@ -246,7 +246,7 @@ $resultado_events->execute();
 
 
         #sair {
-            background-color: #3db244;
+            background-color: #4b8fc3;
             color: white;
             border: none;
             padding-right: 2px;
@@ -264,11 +264,11 @@ $resultado_events->execute();
             <div class="cabeçalho">
                 <div class="row">
                     <div class="col-2 col-lg-2 col-md-2 d-flex">
-                        <img class="d-none d-lg-block d-md-block  " src="../imagens/logoifam.png" id="logo" />
+                        <img class="d-none d-lg-block d-md-block  " src="../imagens/Logo.png" id="logo" />
                     </div>
                     <div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
-                        <p class="tema">Reserva de Laboratórios</p>
-                        <p class="subtitulo">Campus Manaus Distrito Industrial</p>
+                        <p class="tema">Coordenação de Laboratórios</p>
+                        <p class="subtitulo">Sistema de administração de laboratórios</p>
                     </div>
                     <!-- (futura implementação, nesta tela, a barra de pesquisa deve levar a
                     wiki de laboratorios)
