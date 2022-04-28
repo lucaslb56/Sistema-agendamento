@@ -38,62 +38,16 @@ $resultado_events->execute();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/Sitelabs.css">
+    <link rel="stylesheet" type="text/css" href="css/Home.css">
     <link href='css/core/main.min.css' rel='stylesheet' />
     <link href='css/daygrid/main.min.css' rel='stylesheet' />
     <script src='js/core/main.min.js'></script>
     <script src='js/interaction/main.min.js'></script>
     <script src='js/daygrid/main.min.js'></script>
     <script src='js/core/locales/pt-br.js'></script>
+    <script src='js/Home.js'></script>
 
     <script>
-        function salas(A) {
-            var mud = document.getElementById('salas' + A);
-
-            switch (A) {
-                case 1:
-                    mud.style.display = 'block';
-                    document.getElementById('salas2').style.display = 'none';
-                    document.getElementById('salas3').style.display = 'none';
-                    document.getElementById('salas4').style.display = 'none';
-                    document.getElementById('salas5').style.display = 'none';
-                    document.getElementById('legend').innerHTML = 'BLOCO B - 1º ANDAR';
-                    break;
-                case 2:
-                    mud.style.display = 'block';
-                    document.getElementById('salas1').style.display = 'none';
-                    document.getElementById('salas3').style.display = 'none';
-                    document.getElementById('salas4').style.display = 'none';
-                    document.getElementById('salas5').style.display = 'none';
-                    document.getElementById('legend').innerHTML = 'BLOCO B - TÉRREO';
-                    break;
-                case 3:
-                    mud.style.display = 'block';
-                    document.getElementById('salas1').style.display = 'none';
-                    document.getElementById('salas2').style.display = 'none';
-                    document.getElementById('salas4').style.display = 'none';
-                    document.getElementById('salas5').style.display = 'none';
-                    document.getElementById('legend').innerHTML = 'BLOCO C - 1º ANDAR';
-                    break;
-                case 4:
-                    mud.style.display = 'block';
-                    document.getElementById('salas1').style.display = 'none';
-                    document.getElementById('salas2').style.display = 'none';
-                    document.getElementById('salas3').style.display = 'none';
-                    document.getElementById('salas5').style.display = 'none';
-                    document.getElementById('legend').innerHTML = 'BLOCO C - EXTENÇÃO';
-                    break;
-                case 5:
-                    mud.style.display = 'block';
-                    document.getElementById('salas1').style.display = 'none';
-                    document.getElementById('salas2').style.display = 'none';
-                    document.getElementById('salas3').style.display = 'none';
-                    document.getElementById('salas4').style.display = 'none';
-                    document.getElementById('legend').innerHTML = 'BLOCO C - TÉRREO';
-                    break;
-                default:
-
-            }
-        }
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
@@ -166,93 +120,28 @@ $resultado_events->execute();
                 document.getElementById("mudasala").submit();
             })
 
+            $("#input-mais").click(function(){
+                $(".spinner-border").show();
+                var sala = document.getElementById("nova-sala").value;
+				var area = document.getElementById("nova-area").value;
+                console.log(sala)
+                var dados = new FormData();
+                dados.append('sala', sala);
+				dados.append('area', area);
+                $.ajax({
+					url: 'add-sala.php',
+					method: 'post',
+					data: dados,
+					processData: false,
+					contentType: false,
+					success: function(resposta) {
+                        $(".spinner-border").hide();
+						document.getElementById('resultado_sala').innerHTML=resposta
+					}
+                })
+            })
         })
     </script>
-    <style>
-        .agendamento {
-            background-color: rgba(189, 185, 185, 0.2);
-            padding: 5px;
-            margin: 10px;
-            border-radius: 5px;
-        }
-
-        #calendar {
-            max-width: 950px;
-            margin: 0 auto;
-        }
-
-        .btn-primary {
-            background-color: #e0e0e0;
-            color: black;
-            border: solid 1px;
-            border-radius: 5px;
-            width: 140px;
-            height: 35px;
-            text-align: left;
-            margin-right: 20px;
-            margin-bottom: 10px;
-        }
-
-        .botao {
-            background-color: #e0e0e0;
-            color: black;
-            border: solid 1px;
-            border-radius: 5px;
-            padding: 8px;
-            text-align: left;
-            margin-right: 20px;
-            margin-bottom: 5px;
-        }
-
-        .botao:hover {
-            color: black;
-            text-decoration: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #e0e0e0;
-            color: black;
-            border: solid 1px;
-        }
-
-        .agendborda {
-            border: 1px groove black;
-            border-radius: 5px;
-        }
-
-        .agend1 {
-            border-bottom: none;
-            border-left: none;
-            margin-top: 20px;
-            margin-right: 10px;
-            text-align: left;
-        }
-
-        .agendborda .legenda {
-            height: 30px;
-            font-size: 1.2em !important;
-            text-align: left !important;
-            width: auto;
-            padding: 0 5px;
-            border-bottom: none;
-        }
-
-        .calendario {
-            width: 100%;
-            border-radius: 5px;
-            background-color: #ffffff;
-            font-size: 12px;
-        }
-
-
-        #sair {
-            background-color: #4b8fc3;
-            color: white;
-            border: none;
-            padding-right: 2px;
-
-        }
-    </style>
 </head>
 
 <body>
@@ -419,6 +308,15 @@ $resultado_events->execute();
                             <input id="sala" style="display: none;" name="sala">
                         </form>
                     </fieldset>
+                    <button onclick="add_sala()" style="padding: 5px;" class="botao">Adicionar Sala</button>
+                    <button style="padding: 5px;" class="botao">Remover Sala</button>
+                    <div id="form-sala" style="display: none;">
+                        <input placeholder="Sala" type="text" id="nova-sala" class="input-sala">
+                        <input placeholder="Área" type="text" id="nova-area" class="input-sala">
+                        <button id="input-mais">+</button>
+                        <input onclick="remove_sala()" id="remove-form" type="button" value="x">
+                    </div>
+                    <div id="resultado_sala"><div style="display:none; margin-left: 10px;" class="spinner-border"></div></div>
                 </div>
 
 
