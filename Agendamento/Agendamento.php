@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!(isset($_SESSION['permissao']))) {
-	header('location: ../../Login/login.php');
+	header('location: ../Login/login.php');
 }
 
 if (isset($_POST['sair'])) {
@@ -9,7 +9,7 @@ if (isset($_POST['sair'])) {
 		$_SESSION['usuario'],
 		$_SESSION['permissao']
 	);
-	header('location: ../../Login/login.php');
+	header('location: ../Login/login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -393,10 +393,7 @@ if (isset($_POST['sair'])) {
 			<form action="logicgend.php" method="post">
 				<div class="row">
 					<div class="col-lg-8">
-						<div class="alert alert-warning alert-dismissible" style="width: 70%; float: right; margin-left: 300px;">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
-							<strong>Atenção!</strong> Certifique-se de escolher um horário não ocupado.
-						</div>
+						
 						<div id="retornaagend">
 						<div style="display:none; margin-left: 10px;" class="spinner-border"></div>
 						</div>
@@ -407,11 +404,18 @@ if (isset($_POST['sair'])) {
 										ÁREAS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 									</button>
 									<div class="dropdown-menu">
-										<a onclick="salas(1)" class="dropdown-item">BLOCO B - 1º ANDAR</a>
-										<a onclick="salas(2)" class="dropdown-item">BLOCO B - TÉRREO</a>
-										<a onclick="salas(3)" class="dropdown-item">BLOCO C - 1º ANDAR</a>
-										<a onclick="salas(4)" class="dropdown-item">BLOCO C - EXTENÇÃO</a>
-										<a onclick="salas(5)" class="dropdown-item">BLOCO C - TÉRREO</a>
+										<?php 
+											$servername = 'localhost';
+											$username = 'root';
+											$password = '';
+											$database = 'cordlab';
+											$mysqli = new mysqli($servername, $username, $password, $database);
+
+											$consulta = $mysqli->query("SELECT area FROM salas");
+
+											while ($areas = $consulta->fetch_array()) {
+										?>
+										<a class="dropdown-item"><?php echo $areas["area"]; ?></a>
 									</div>
 									<input style="display:none;" value="BLOCO B - 1º ANDAR" id="area" type="text">
 								</div>
