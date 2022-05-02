@@ -1,3 +1,4 @@
+
 <?php
 $servername = 'localhost';
 $username = 'root';
@@ -9,6 +10,6 @@ $consulta = $mysqli->query("SELECT sala, id FROM salas WHERE area='$area'");
 
 while ($salas = $consulta->fetch_array()) {
 ?>
-    <input style="display: none;" type="radio" id="<?php echo 'labs'.$salas["id"]; ?>" name="labs" value="<?php echo $salas["sala"]; ?>"> 
-    <label class="labo" for="<?php echo 'labs'.$salas["id"]; ?>"><?php echo $salas["sala"]; ?></label><br>
+    <label onclick="submit_sala(<?php echo $salas['id'];?>)" class="labo" id="<?php echo 'labs'.$salas["id"]; ?>"><?php echo $salas["sala"]; ?></label><br>
 <?php } ?>
+

@@ -1,5 +1,7 @@
 <?php
 session_start();
+ini_set('display_errors', 0);
+error_reporting(0);
 if (!(isset($_SESSION['permissao']))) {
     header('location: ../Login/login.php');
 }
@@ -17,7 +19,7 @@ define('PASS', '');
 define('DBNAME', 'cordlab');
 
 $conn = new PDO('mysql:host=' . HOST . ';dbname=' . DBNAME . ';', USER, PASS);
-$sala = "Comunicações";
+$sala = "";
 if (isset($_POST["sala"])) {
     $sala = $_POST["sala"];
 }
@@ -25,6 +27,18 @@ $query_events = "SELECT * FROM agendamentos WHERE Sala = '$sala'";
 $resultado_events = $conn->prepare($query_events);
 $resultado_events->execute();
 
+$servername = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'cordlab';
+$mysqli = new mysqli($servername, $username, $password, $database);
+$consulta1 = $mysqli->query("SELECT area FROM salas WHERE sala='$sala'");
+$areaI = $consulta1->fetch_array();
+$areaB = "SALAS";
+if (isset($areaI["area"])) {
+    $areaB = $areaI["area"];
+}
+$consulta2 = $mysqli->query("SELECT id, sala FROM salas WHERE area='$areaB'");
 ?>
 <!DOCTYPE html>
 <html>
@@ -100,44 +114,68 @@ $resultado_events->execute();
                         cachebuster: new Date().valueOf()
                     };
                 },
-                <?php
-
-                if ($_SESSION['permissao'] == 3) {
-                    echo "eventClick: function(info) {
+                eventClick: function(info) {
                     info.jsEvent.preventDefault(); // don't let the browser navigate
                     window.location.href = 'Editar/Editaragend.php?id=' + info.event.id;
-                },";
-                }
-                ?>
+                },
             });
 
             calendar.render();
         });
 
+        function submit_sala(id) {
+            var sala = document.getElementById('labs' + id)
+            document.getElementById("sala").value = sala.innerText
+            document.getElementById("mudasala").submit()
+        }
+        $("label").click(function() {
+            console.log("teste")
+        })
         $(document).ready(function() {
-            $("label").click(function() {
-                $("#sala").val($(this).text());
-                document.getElementById("mudasala").submit();
+            $(".salas-area").click(function() {
+                var area = $(this).text();
+                $("#legend").text($(this).text())
+                var dados = new FormData();
+                dados.append('area', area);
+                $.ajax({
+                    url: 'Controle-Salas.php',
+                    method: 'post',
+                    data: dados,
+                    processData: false,
+                    contentType: false,
+                    success: function(resposta) {
+                        document.getElementById('salas').innerHTML = resposta
+                    }
+                })
+
             })
 
-            $("#input-mais").click(function(){
+
+
+            $("#input-mais").click(function() {
                 $(".spinner-border").show();
-                var sala = document.getElementById("nova-sala").value;
-				var area = document.getElementById("nova-area").value;
-                console.log(sala)
+                var salatxt = document.getElementById("nova-sala")
+                var sala = salatxt.value
+                var area = document.getElementById("nova-area").value;
+                if (area == "") {
+                    document.getElementById('resultado_sala').innerHTML = "<p style='color:red; margin-left: 3%;'>Campo obrigatório não preenchido</p>"
+                    return
+                }
                 var dados = new FormData();
                 dados.append('sala', sala);
-				dados.append('area', area);
+                dados.append('area', area);
                 $.ajax({
-					url: 'add-sala.php',
-					method: 'post',
-					data: dados,
-					processData: false,
-					contentType: false,
-					success: function(resposta) {
+                    url: 'add-sala.php',
+                    method: 'post',
+                    data: dados,
+                    processData: false,
+                    contentType: false,
+                    success: function(resposta) {
                         $(".spinner-border").hide();
-						document.getElementById('resultado_sala').innerHTML=resposta
-					}
+                        document.getElementById('resultado_sala').innerHTML = resposta
+                        salatxt.value = ""
+                        salatxt.focus()
+                    }
                 })
             })
         })
@@ -245,68 +283,46 @@ $resultado_events->execute();
 
             <div class="agendamento row">
                 <div class="col-lg-3 col-md-4 col-sm-12">
-                    <div class="btn-group">
+                    <div class="btn-group area">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                             ÁREAS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                         </button>
                         <div class="dropdown-menu">
-                            <a onclick="salas(1)" class="dropdown-item" href="#">BLOCO B - 1º ANDAR</a>
-                            <a onclick="salas(2)" class="dropdown-item" href="#">BLOCO B - TÉRREO</a>
-                            <a onclick="salas(3)" class="dropdown-item" href="#">BLOCO C - 1º ANDAR</a>
-                            <a onclick="salas(4)" class="dropdown-item" href="#">BLOCO C - EXTENÇÃO</a>
-                            <a onclick="salas(5)" class="dropdown-item" href="#">BLOCO C - TÉRREO</a>
+                            <?php
+                            
+                            $areas_repetidas = array();
+                            $consulta = $mysqli->query("SELECT area FROM salas");
+
+                            while ($areas = $consulta->fetch_array()) {
+                                $area = $areas["area"];
+                                if (!(in_array($area, $areas_repetidas))) {
+                            ?>
+                                    <a class="dropdown-item salas-area"><?php echo $area; ?></a>
+                            <?php
+                                    array_push($areas_repetidas, $area);
+                                }
+                            } ?>
                         </div>
+                        <input style="display:none;" value="BLOCO B - 1º ANDAR" id="area" type="text">
                     </div>
                     <a href="../Agendamento/Agendamento.php" class="botao">Agendar</a>
                     <fieldset class="agend1 agendborda">
-                        <legend style="margin-bottom: 5px;" class="legenda">
-                            <h4 id="legend">BLOCO B - 1º ANDAR</h4>
-                        </legend><br>
+                        <legend style="margin-bottom: 20px;" class="legenda">
+                            <h4 id="legend"><?php echo $areaB; ?></h4>
+                        </legend>
+                        <div id="salas">
+                            <?php
+                            while ($salas = $consulta2->fetch_array()) {
+                            ?>
+                                <label onclick="submit_sala(<?php echo $salas['id']; ?>)" class="labo" id="<?php echo 'labs' . $salas["id"]; ?>"><?php echo $salas["sala"]; ?></label><br>
+                            <?php } ?>
 
-                        <div id="salas1" action="">
-                            <ul style="padding-left: 10px;">
-                                <label class="labo" for="lab1">Comunicações</label> <br>
-                                <label class="labo" for="lab2">Ópticas</label> <br>
-                                <label class="labo" for="lab3">Lab. Programação I</label> <br>
-                                <label class="labo" for="lab4">Lab. Programação IV</label> <br>
-                                <label class="labo" for="lab5">MPCE</label> <br>
-                                <label class="labo" for="lab6">Lab. Programação II</label> <br>
-                                <label class="labo" for="lab7">Lab. Programação III</label> <br>
-                                <label class="labo" for="lab8">Redes de Telecomunicações</label> <br>
-                                <label class="labo" for="lab9">Sistemas de Telecom</label> <br>
-                            </ul>
-                        </div>
-                        <div id="salas2" style="display: none;" action="">
-                            <ul style="padding-left: 10px;">
-                                <label class="labo" for="lab1">Indústria I</label> <br>
-                                <label class="labo" for="lab2">Indústria II</label> <br>
-                                <label class="labo" for="lab3">Indústria III</label> <br>
-                                <label class="labo" for="lab4">Lab. FINEP</label> <br>
-                            </ul>
-                        </div>
-                        <div id="salas3">
-
-                        </div>
-                        <div id="salas4" style="display: none;" action="">
-                            <ul style="padding-left: 10px;">
-                                <label class="labo" for="lab1">Lab. Robótica e Controle</label> <br>
-                                <label class="labo" for="lab2">Lab. de Acionamentos/CLP</label> <br>
-                                <label class="labo" for="lab3">Lab. de Ele. de potência</label> <br>
-                                <label class="labo" for="lab4">Lab. Hidráulica/Pneumática</label> <br>
-                            </ul>
-                        </div>
-                        <div id="salas5" style="display: none;" action="">
-                            <ul style="padding-left: 10px;">
-                                <label class="labo" for="lab1">Áudio e Vídeo</label> <br>
-                                <label class="labo" for="lab2">Lab. de Automação</label> <br>
-                                <label class="labo" for="lab3">CMDI MAKER</label> <br>
-                                <label class="labo" for="lab4">Lab. de Física</label> <br>
-                                <label class="labo" for="lab4">Quimica</label> <br>
-                            </ul>
+                            <br><br><br><br><br><br><br><br><br><br><br>
                         </div>
                         <form id="mudasala" method="POST" action="">
                             <input id="sala" style="display: none;" name="sala">
                         </form>
+
                     </fieldset>
                     <button onclick="add_sala()" style="padding: 5px;" class="botao">Adicionar Sala</button>
                     <button style="padding: 5px;" class="botao">Remover Sala</button>
@@ -316,7 +332,9 @@ $resultado_events->execute();
                         <button id="input-mais">+</button>
                         <input onclick="remove_sala()" id="remove-form" type="button" value="x">
                     </div>
-                    <div id="resultado_sala"><div style="display:none; margin-left: 10px;" class="spinner-border"></div></div>
+                    <div id="resultado_sala">
+                        <div style="display:none; margin-left: 10px;" class="spinner-border"></div>
+                    </div>
                 </div>
 
 

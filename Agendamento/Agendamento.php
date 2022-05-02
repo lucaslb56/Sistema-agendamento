@@ -290,8 +290,6 @@ if (isset($_POST['sair'])) {
 			}
 
 		}
-
-		
 	</script>
 </head>
 
@@ -303,13 +301,13 @@ if (isset($_POST['sair'])) {
 
 			<div class="cabeçalho">
 				<div class="row">
-				<div class="col-2 col-lg-2 col-md-2 d-flex">
-					<img class="d-none d-lg-block d-md-block  " src="../imagens/Logo.png" id="logo"/>
-				</div>
-				<div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
-					<p class="tema">Coordenação de Laboratórios</p>
-					<p class="subtitulo">Sistema de administração de laboratórios</p>
-				</div>
+					<div class="col-2 col-lg-2 col-md-2 d-flex">
+						<img class="d-none d-lg-block d-md-block  " src="../imagens/Logo.png" id="logo" />
+					</div>
+					<div class="col-12 col-lg-9 col-md-9 col-sm-12 text-center">
+						<p class="tema">Coordenação de Laboratórios</p>
+						<p class="subtitulo">Sistema de administração de laboratórios</p>
+					</div>
 					<!-- (futura implementação, nesta tela, a barra de pesquisa deve levar a
                     wiki de laboratorios)
                     <div class="col-3 col-lg-3 col-md-4 d-none d-lg-block d-md-block">
@@ -393,9 +391,8 @@ if (isset($_POST['sair'])) {
 			<form action="logicgend.php" method="post">
 				<div class="row">
 					<div class="col-lg-8">
-						
 						<div id="retornaagend">
-						<div style="display:none; margin-left: 10px;" class="spinner-border"></div>
+							<div style="display:none; margin-left: 10px;" class="spinner-border"></div>
 						</div>
 						<div class="agendamento row">
 							<div class="col-lg-12 col-md-12 col-sm-12">
@@ -404,18 +401,24 @@ if (isset($_POST['sair'])) {
 										ÁREAS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 									</button>
 									<div class="dropdown-menu">
-										<?php 
-											$servername = 'localhost';
-											$username = 'root';
-											$password = '';
-											$database = 'cordlab';
-											$mysqli = new mysqli($servername, $username, $password, $database);
+										<?php
+										$servername = 'localhost';
+										$username = 'root';
+										$password = '';
+										$database = 'cordlab';
+										$mysqli = new mysqli($servername, $username, $password, $database);
+										$areas_repetidas = array();
+										$consulta = $mysqli->query("SELECT area FROM salas");
 
-											$consulta = $mysqli->query("SELECT area FROM salas");
-
-											while ($areas = $consulta->fetch_array()) {
+										while ($areas = $consulta->fetch_array()) {
+											$area = $areas["area"];
+											if (!(in_array($area, $areas_repetidas))) {
 										?>
-										<a class="dropdown-item"><?php echo $areas["area"]; ?></a>
+												<a class="dropdown-item salas-area"><?php echo $area; ?></a>
+										<?php
+												array_push($areas_repetidas, $area);
+											}
+										} ?>
 									</div>
 									<input style="display:none;" value="BLOCO B - 1º ANDAR" id="area" type="text">
 								</div>
@@ -431,48 +434,10 @@ if (isset($_POST['sair'])) {
 							<div class="col-lg-5 col-md-5 col-sm-12">
 								<fieldset class="agend1 agendborda">
 									<legend style="margin-bottom: 20px;" class="legenda">
-										<h4 id="legend">BLOCO B - 1º ANDAR</h4>
+										<h4 id="legend">SALAS</h4>
 									</legend>
-									<div id="salas1">
-										<ul style="padding-left: 10px;">
-											<input type="radio" id="lab1" name="labs" value="Comunicações"> <label class="labo" for="lab1">Comunicações</label> <br>
-											<input type="radio" id="lab2" name="labs" value="Ópticas"> <label class="labo" for="lab2">Ópticas</label> <br>
-											<input type="radio" id="lab3" name="labs" value="Lab. Programação I"> <label class="labo" for="lab3">Lab. Programação I</label> <br>
-											<input type="radio" id="lab4" name="labs" value="Lab. Programação IV"> <label class="labo" for="lab4">Lab. Programação IV</label> <br>
-											<input type="radio" id="lab5" name="labs" value="MPCE"> <label class="labo" for="lab5">MPCE</label> <br>
-											<input type="radio" id="lab6" name="labs" value="Lab. Programação II"> <label class="labo" for="lab6">Lab. Programação II</label> <br>
-											<input type="radio" id="lab7" name="labs" value="Lab. Programação III"> <label class="labo" for="lab7">Lab. Programação III</label> <br>
-											<input type="radio" id="lab8" name="labs" value="Redes de Telecomunicações"> <label class="labo" for="lab8">Redes de Telecomunicações</label> <br>
-											<input type="radio" id="lab9" name="labs" value="Sistemas de Telecom"> <label class="labo" for="lab9">Sistemas de Telecom</label> <br>
-										</ul>
-									</div>
-									<div id="salas2" style="display: none;">
-										<ul style="padding-left: 10px;">
-											<input type="radio" id="lab1" name="labs" value="Indústria I"> <label class="labo" for="lab1">Indústria I</label> <br>
-											<input type="radio" id="lab2" name="labs" value="Indústria II"> <label class="labo" for="lab2">Indústria II</label> <br>
-											<input type="radio" id="lab3" name="labs" value="Indústria III"> <label class="labo" for="lab3">Indústria III</label> <br>
-											<input type="radio" id="lab4" name="labs" value="Lab. FINEP"> <label class="labo" for="lab4">Lab. FINEP</label> <br>
-										</ul>
-									</div>
-									<div id="salas3">
-
-									</div>
-									<div id="salas4" style="display: none;">
-										<ul style="padding-left: 10px;">
-											<input type="radio" id="lab1" name="labs" value="Lab. Robótica e Controle"> <label class="labo" for="lab1">Lab. Robótica e Controle</label> <br>
-											<input type="radio" id="lab2" name="labs" value="Lab. de Acionamentos/CLP"> <label class="labo" for="lab2">Lab. de Acionamentos/CLP</label> <br>
-											<input type="radio" id="lab3" name="labs" value="Lab. de Ele. de potência"> <label class="labo" for="lab3">Lab. de Ele. de potência</label> <br>
-											<input type="radio" id="lab4" name="labs" value="Lab. Hidráulica/Pneumática"> <label class="labo" for="lab4">Lab. Hidráulica/Pneumática</label> <br>
-										</ul>
-									</div>
-									<div id="salas5" style="display: none;">
-										<ul style="padding-left: 10px;">
-											<input type="radio" id="lab1" name="labs" value="Áudio e Vídeo"> <label class="labo" for="lab1">Áudio e Vídeo</label> <br>
-											<input type="radio" id="lab2" name="labs" value="Lab. de Automação"> <label class="labo" for="lab2">Lab. de Automação</label> <br>
-											<input type="radio" id="lab3" name="labs" value="CMDI MAKER"> <label class="labo" for="lab3">CMDI MAKER</label> <br>
-											<input type="radio" id="lab4" name="labs" value="Lab. de Física"> <label class="labo" for="lab4">Lab. de Física</label> <br>
-											<input type="radio" id="lab4" name="labs" value="Quimica"> <label class="labo" for="lab4">Quimica</label> <br>
-										</ul>
+									<div id="salas">
+										<br><br><br><br><br><br><br><br><br><br><br>
 									</div>
 
 								</fieldset>
@@ -619,54 +584,23 @@ if (isset($_POST['sair'])) {
 				document.getElementById("manutenção").style.display = "none"
 			}
 		}
-		function salas(A) {
-			var mud = document.getElementById('salas' + A);
+		$(".salas-area").click(function() {
+			var area = $(this).text();
+			$("#legend").text($(this).text())
+			var dados = new FormData();
+			dados.append('area', area);
+			$.ajax({
+				url: 'Controle-Salas.php',
+				method: 'post',
+				data: dados,
+				processData: false,
+				contentType: false,
+				success: function(resposta) {
+					document.getElementById('salas').innerHTML = resposta
+				}
+			})
 
-			switch (A) {
-				case 1:
-					mud.style.display = 'block';
-					document.getElementById('salas2').style.display = 'none';
-					document.getElementById('salas3').style.display = 'none';
-					document.getElementById('salas4').style.display = 'none';
-					document.getElementById('salas5').style.display = 'none';
-					document.getElementById('legend').innerHTML = 'BLOCO B - 1º ANDAR';
-					break;
-				case 2:
-					mud.style.display = 'block';
-					document.getElementById('salas1').style.display = 'none';
-					document.getElementById('salas3').style.display = 'none';
-					document.getElementById('salas4').style.display = 'none';
-					document.getElementById('salas5').style.display = 'none';
-					document.getElementById('legend').innerHTML = 'BLOCO B - TÉRREO';
-					break;
-				case 3:
-					mud.style.display = 'block';
-					document.getElementById('salas1').style.display = 'none';
-					document.getElementById('salas2').style.display = 'none';
-					document.getElementById('salas4').style.display = 'none';
-					document.getElementById('salas5').style.display = 'none';
-					document.getElementById('legend').innerHTML = 'BLOCO C - 1º ANDAR';
-					break;
-				case 4:
-					mud.style.display = 'block';
-					document.getElementById('salas1').style.display = 'none';
-					document.getElementById('salas2').style.display = 'none';
-					document.getElementById('salas3').style.display = 'none';
-					document.getElementById('salas5').style.display = 'none';
-					document.getElementById('legend').innerHTML = 'BLOCO C - EXTENÇÃO';
-					break;
-				case 5:
-					mud.style.display = 'block';
-					document.getElementById('salas1').style.display = 'none';
-					document.getElementById('salas2').style.display = 'none';
-					document.getElementById('salas3').style.display = 'none';
-					document.getElementById('salas4').style.display = 'none';
-					document.getElementById('legend').innerHTML = 'BLOCO C - TÉRREO';
-					break;
-				default:
-
-			}
-		}
+		})
 		// muda cor do botao repetir agendamento
 		$("#menuAex").hide();
 		$(document).ready(function() {
@@ -688,32 +622,32 @@ if (isset($_POST['sair'])) {
 				semanal = [];
 				sema = [];
 				$('input[name="semanal[]"]:checked').each(function(element) {
-					semanal.push($(this).val());	
+					semanal.push($(this).val());
 				});
 				$('input[name="sema[]"]:checked').each(function(element) {
-					sema.push($(this).val());	
+					sema.push($(this).val());
 				});
 				semanal.serialize;
 				var aex = document.getElementById("aex").value;
-				if(tipo == "Manutenção"){
+				if (tipo == "Manutenção") {
 					var inicioM = document.getElementById("am3").value;
 					var fimM = document.getElementById("am4").value;
 					dados.append('inicioM', inicioM);
 					dados.append('fimM', fimM);
 				}
 				<?php
-					if($_SESSION["permissao"]==3){
-						echo 'var nome = document.getElementById("nomeA").value;';
-						echo 'var permissao = document.getElementById("usuperm").value;';
-						echo "dados.append('permissao', permissao);";
-						echo "dados.append('nome', nome);";
-					}
-					if($_SESSION["permissao"]!=1){
-						echo 'var inicioex = document.getElementById("aex3").value;';
-						echo 'var fimex = document.getElementById("aex4").value;';
-						echo "dados.append('inicioex', inicioex);";
-						echo "dados.append('fimex', fimex);";
-					}
+				if ($_SESSION["permissao"] == 3) {
+					echo 'var nome = document.getElementById("nomeA").value;';
+					echo 'var permissao = document.getElementById("usuperm").value;';
+					echo "dados.append('permissao', permissao);";
+					echo "dados.append('nome', nome);";
+				}
+				if ($_SESSION["permissao"] != 1) {
+					echo 'var inicioex = document.getElementById("aex3").value;';
+					echo 'var fimex = document.getElementById("aex4").value;';
+					echo "dados.append('inicioex', inicioex);";
+					echo "dados.append('fimex', fimex);";
+				}
 				?>
 
 				dados.append('area', area);
