@@ -13,19 +13,6 @@ if (isset($_POST['sair'])) {
     header('location: ../Login/login.php');
 }
 
-define('HOST', 'localhost');
-define('USER', 'root');
-define('PASS', '');
-define('DBNAME', 'cordlab');
-
-$conn = new PDO('mysql:host=' . HOST . ';dbname=' . DBNAME . ';', USER, PASS);
-$sala = "";
-if (isset($_POST["sala"])) {
-    $sala = $_POST["sala"];
-}
-$query_events = "SELECT * FROM agendamentos WHERE Sala = '$sala'";
-$resultado_events = $conn->prepare($query_events);
-$resultado_events->execute();
 
 $servername = 'localhost';
 $username = 'root';
@@ -62,7 +49,13 @@ $consulta2 = $mysqli->query("SELECT id, sala FROM salas WHERE area='$areaB'");
     <script src='js/Home.js'></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        function AtualizarCalendario(lv) {
+            if (lv != 0 && lv.length != 0) {
+                lv1 = JSON.parse(lv)
+            } else {
+                lv1 = 0
+            }
+
             var calendarEl = document.getElementById('calendar');
 
             calendar = new FullCalendar.Calendar(calendarEl, {
@@ -86,29 +79,7 @@ $consulta2 = $mysqli->query("SELECT id, sala FROM salas WHERE area='$areaB'");
                 //defaultDate: '2019-04-12',
                 editable: true,
                 eventLimit: false,
-                events: [
-                    <?php
-                    while ($row_events = $resultado_events->fetch(PDO::FETCH_ASSOC)) {
-                        $inicio = $row_events['Dia'] . " " . $row_events['Comeco'];
-                        $fim = $row_events['Dia'] . " " . $row_events['Termino'];
-
-                        if ($row_events['Tipo'] == "Manutenção") {
-                            $cor = "#8B0000";
-                            $inicio = $row_events['Dia'];
-                        } elseif ($row_events['Permissão'] == 1) {
-                            $cor = "#0071c5";
-                        } else {
-                            $cor = "#228B22";
-                        }
-                    ?> {
-                            id: '<?php echo $row_events['id']; ?>',
-                            title: '<?php echo $row_events['nomecompleto']; ?>',
-                            color: '<?php echo $cor; ?>',
-                            start: '<?php echo $inicio; ?>',
-                            end: '<?php echo $fim; ?>'
-                        },
-                    <?php } ?>
-                ],
+                events: lv1,
                 extraParams: function() {
                     return {
                         cachebuster: new Date().valueOf()
@@ -121,17 +92,28 @@ $consulta2 = $mysqli->query("SELECT id, sala FROM salas WHERE area='$areaB'");
             });
 
             calendar.render();
-        });
+        }
 
         function submit_sala(id) {
-            var sala = document.getElementById('labs' + id)
-            document.getElementById("sala").value = sala.innerText
-            document.getElementById("mudasala").submit()
+            var salaCalendario = document.getElementById('labs' + id).innerText
+            var dado = new FormData();
+            dado.append('salaCalendario', salaCalendario);
+            $.ajax({
+                url: 'list_eventos.php',
+                method: 'post',
+                data: dado,
+                processData: false,
+                contentType: false,
+                success: function(resposta) {
+                    document.getElementById("TituloCalendario").innerHTML = salaCalendario
+                    document.getElementById('calendar').innerHTML = "";
+                    AtualizarCalendario(resposta)
+                    console.log(resposta)
+                }
+            })
         }
-        $("label").click(function() {
-            console.log("teste")
-        })
         $(document).ready(function() {
+            AtualizarCalendario(0)
             $(".salas-area").click(function() {
                 var area = $(this).text();
                 $("#legend").text($(this).text())
@@ -148,35 +130,6 @@ $consulta2 = $mysqli->query("SELECT id, sala FROM salas WHERE area='$areaB'");
                     }
                 })
 
-            })
-
-
-
-            $("#input-mais").click(function() {
-                $(".spinner-border").show();
-                var salatxt = document.getElementById("nova-sala")
-                var sala = salatxt.value
-                var area = document.getElementById("nova-area").value;
-                if (area == "") {
-                    document.getElementById('resultado_sala').innerHTML = "<p style='color:red; margin-left: 3%;'>Campo obrigatório não preenchido</p>"
-                    return
-                }
-                var dados = new FormData();
-                dados.append('sala', sala);
-                dados.append('area', area);
-                $.ajax({
-                    url: 'add-sala.php',
-                    method: 'post',
-                    data: dados,
-                    processData: false,
-                    contentType: false,
-                    success: function(resposta) {
-                        $(".spinner-border").hide();
-                        document.getElementById('resultado_sala').innerHTML = resposta
-                        salatxt.value = ""
-                        salatxt.focus()
-                    }
-                })
             })
         })
     </script>
@@ -289,7 +242,7 @@ $consulta2 = $mysqli->query("SELECT id, sala FROM salas WHERE area='$areaB'");
                         </button>
                         <div class="dropdown-menu">
                             <?php
-                            
+
                             $areas_repetidas = array();
                             $consulta = $mysqli->query("SELECT area FROM salas");
 
@@ -317,31 +270,16 @@ $consulta2 = $mysqli->query("SELECT id, sala FROM salas WHERE area='$areaB'");
                                 <label onclick="submit_sala(<?php echo $salas['id']; ?>)" class="labo" id="<?php echo 'labs' . $salas["id"]; ?>"><?php echo $salas["sala"]; ?></label><br>
                             <?php } ?>
 
-                            <br><br><br><br><br><br><br><br><br><br><br>
+                            <br><br><br><br><br>
+                            <br><br><br><br><br>
                         </div>
-                        <form id="mudasala" method="POST" action="">
-                            <input id="sala" style="display: none;" name="sala">
-                        </form>
+
 
                     </fieldset>
-                    <button onclick="add_sala()" style="padding: 5px;" class="botao">Adicionar Sala</button>
-                    <button style="padding: 5px;" class="botao">Remover Sala</button>
-                    <div id="form-sala" style="display: none;">
-                        <input placeholder="Sala" type="text" id="nova-sala" class="input-sala">
-                        <input placeholder="Área" type="text" id="nova-area" class="input-sala">
-                        <button id="input-mais">+</button>
-                        <input onclick="remove_sala()" id="remove-form" type="button" value="x">
-                    </div>
-                    <div id="resultado_sala">
-                        <div style="display:none; margin-left: 10px;" class="spinner-border"></div>
-                    </div>
                 </div>
-
-
-
                 <div class="col-lg-9 col-md-8 col-sm-12 text-center">
 
-                    <h3><?php echo $sala; ?></h3>
+                    <h3 id="TituloCalendario"></h3>
                     <div style="padding: 3px; border: solid #cccccc 1px; border-radius: 5px; margin-top: 10px;">
                         <div id='calendar'></div>
                     </div>
